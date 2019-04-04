@@ -1,19 +1,24 @@
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import plotly.plotly as py
-from plotly.offline import init_notebook_mode,iplot
-import plotly.graph_objs as go
-#from wordcloud import WordCloud
-import matplotlib.pyplot as plt
 import pandas as pd
 
 data = pd.read_csv("C:/Users/ronoy/OneDrive/Documents/forefront/season-1819_csv.csv")
-
+from matplotlib import pyplot as plt
 data.head()
 
-homeWins = data['AwayTeam'] [(data['HomeTeam'] == 'Liverpool') & (data['FTR'] == 'H')] # print matches liverpool has won
-homeWins
-for i in homeWins:
-    if i != 'Brighton':
-        print i
+liverpool = data[(data.AwayTeam == 'Liverpool') | (data.HomeTeam == 'Liverpool')]    # print matches liverpool has played
+
+liverpool
+liverpool.mean()
+matchList = []
+for i in range(0,len(totalScores)):
+    matchList.append(i)
+
+
+liverpool = liverpool.set_index([matchList])
+
+
+goalsScoredHome = liverpool['FTHG'][liverpool['HomeTeam'] == 'Liverpool']
+goalsScoredAway = liverpool['FTAG'][liverpool['AwayTeam'] == 'Liverpool']
+totalScores = goalsScoredHome.append(goalsScoredAway)
+
+#lines = totalScores.plot.line()
+plt.plot(totalScores.sort_index())
