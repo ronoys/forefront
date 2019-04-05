@@ -22,3 +22,11 @@ totalScores = goalsScoredHome.append(goalsScoredAway)
 
 #lines = totalScores.plot.line()
 plt.plot(totalScores.sort_index())
+
+
+fig = plt.figure()
+fig.suptitle('Liverpool Goals Scored 2018/19')
+plt.xlabel('Gameweek', fontsize=18)
+plt.ylabel('Goals Scored', fontsize=16)
+
+fig.savefig('output.png')
